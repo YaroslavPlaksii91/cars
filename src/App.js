@@ -1,84 +1,81 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
-function App() {
+import { Container } from 'components/Container/Container';
+import { Heading } from 'components/Heading/Heading';
+import { Search } from 'components/Search/Search';
+import { Table } from 'components/Table/Table';
+import { Pagination } from 'components/Pagination/Pagination';
+
+import { ModalDelete } from 'components/ModalDelete/ModalDelete';
+
+import { getCars } from 'services/getCars';
+import { filterCars } from 'services/filterCars';
+
+export const App = () => {
   const [cars, setCars] = useState([]);
   const [filteredCars, setFilteredCars] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false);
+  const [actionCarId, setActionCarId] = useState(null);
 
   useEffect(() => {
-    fetchData();
+    getCars()
+      .then(cars => {
+        setCars(cars);
+        setFilteredCars(cars);
+      })
+      .catch(console.error);
   }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('https://myfakeapi.com/api/cars');
-      console.log(response.data.cars);
-      setCars(response.data.cars);
-      setFilteredCars(response.data.cars);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
 
   const handleSearch = event => {
     const keyword = event.target.value.toLowerCase();
     setSearchInput(keyword);
-    const filteredData = cars.filter(car => {
-      return (
-        car.company.toLowerCase().includes(keyword) ||
-        car.model.toLowerCase().includes(keyword) ||
-        car.vin.toLowerCase().includes(keyword) ||
-        car.color.toLowerCase().includes(keyword) ||
-        car.year.toString().includes(keyword) ||
-        car.price.toString().includes(keyword) ||
-        car.availability.toLowerCase().includes(keyword)
-      );
-    });
+
+    const filteredData = filterCars(cars, keyword);
+
     setFilteredCars(filteredData);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = page => {
+    setCurrentPage(page);
+  };
+
+  const getPaginatedCars = () => {
+    const rowsPerPage = 50;
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+
+    return filteredCars.slice(startIndex, endIndex);
+  };
+
+  const deleteCar = carId => {
+    const updatedCars = cars.filter(car => car.id !== carId);
+    setCars(updatedCars);
   };
 
   return (
-    <div className="container">
-      <h1>Cars List</h1>
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search..."
-        value={searchInput}
-        onChange={handleSearch}
+    <Container>
+      <Heading level={1}>Cars</Heading>
+      <Search value={searchInput} onChange={handleSearch} />
+      <Table
+        cars={getPaginatedCars()}
+        openModalDelete={setModalDeleteIsOpen}
+        setActionCarId={setActionCarId}
       />
-      <table id="carsTable">
-        <thead>
-          <tr>
-            <th>Company</th>
-            <th>Model</th>
-            <th>VIN</th>
-            <th>Color</th>
-            <th>Year</th>
-            <th>Price</th>
-            <th>Availability</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredCars.map(car => (
-            <tr key={car.vin}>
-              <td>{car.id}</td>
-              <td>{car.car}</td>
-              <td>{car.car_model}</td>
-              <td>{car.car_vin}</td>
-              <td>{car.car_color}</td>
-              <td>{car.car_model_year}</td>
-              <td>{car.price}</td>
-              <td>{car.availability}</td>
-              <td>Actions</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+      <Pagination
+        data={filteredCars}
+        perPage={50}
+        currentPage={currentPage}
+        onClick={handlePageChange}
+      />
+      {modalDeleteIsOpen && (
+        <ModalDelete
+          isModalOpen={setModalDeleteIsOpen}
+          deleteCar={() => deleteCar(actionCarId)}
+        />
+      )}
+    </Container>
   );
-}
-
-export default App;
+};

@@ -1,0 +1,19 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination button {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background-color: #ddd;
+  transition: background-color 250ms ease;
+}
+
+.pagination button:hover,
+.pagination button:focus {
+  background-color: #ccc;
+}
