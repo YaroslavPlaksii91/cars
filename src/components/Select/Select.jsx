@@ -1,17 +1,23 @@
 import PropTypes from 'prop-types';
 
-export const Select = ({ id, openModalDelete, setActionCarId }) => {
-  const handleActionChange = action => {
-    setActionCarId(id);
+export const Select = ({
+  vin,
+  toggleModalDelete,
+  toggleModalEdit,
+  setActionCar,
+}) => {
+  const handleActionChange = (vin, action) => {
+    setActionCar(vin);
 
     if (action === 'edit') {
+      toggleModalEdit();
     } else if (action === 'delete') {
-      openModalDelete(true);
+      toggleModalDelete();
     }
   };
 
   return (
-    <select onChange={e => handleActionChange(id, e.target.value)}>
+    <select value="" onChange={e => handleActionChange(vin, e.target.value)}>
       <option value="">Select Action</option>
       <option value="edit">Edit</option>
       <option value="delete">Delete</option>
@@ -20,7 +26,8 @@ export const Select = ({ id, openModalDelete, setActionCarId }) => {
 };
 
 Select.propTypes = {
-  id: PropTypes.number.isRequired,
-  openModalDelete: PropTypes.func.isRequired,
-  setActionCarId: PropTypes.func.isRequired,
+  vin: PropTypes.string.isRequired,
+  toggleModalDelete: PropTypes.func.isRequired,
+  toggleModalEdit: PropTypes.func.isRequired,
+  setActionCar: PropTypes.func.isRequired,
 };

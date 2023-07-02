@@ -4,9 +4,13 @@ import { Select } from 'components/Select/Select';
 
 import s from './TableRow.module.css';
 
-export const TableRow = ({ car, openModalDelete, setActionCarId }) => {
+export const TableRow = ({
+  car,
+  toggleModalDelete,
+  toggleModalEdit,
+  setActionCar,
+}) => {
   const {
-    id,
     car: company,
     car_color: color,
     car_model: model,
@@ -27,9 +31,10 @@ export const TableRow = ({ car, openModalDelete, setActionCarId }) => {
       <td>{availability ? 'true' : 'false'}</td>
       <td>
         <Select
-          id={id}
-          openModalDelete={openModalDelete}
-          setActionCarId={setActionCarId}
+          vin={vin}
+          toggleModalDelete={toggleModalDelete}
+          toggleModalEdit={toggleModalEdit}
+          setActionCar={setActionCar}
         />
       </td>
     </tr>
@@ -46,6 +51,7 @@ TableRow.propTypes = {
     price: PropTypes.string.isRequired,
     availability: PropTypes.bool.isRequired,
   }).isRequired,
-  openModalDelete: PropTypes.func.isRequired,
-  setActionCarId: PropTypes.func.isRequired,
+  toggleModalDelete: PropTypes.func.isRequired,
+  toggleModalEdit: PropTypes.func.isRequired,
+  setActionCar: PropTypes.func.isRequired,
 };

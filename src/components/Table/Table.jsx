@@ -6,7 +6,12 @@ import { TABLE_COLUMNS } from './constants';
 
 import s from './Table.module.css';
 
-export const Table = ({ cars, openModalDelete, setActionCarId }) => {
+export const Table = ({
+  cars,
+  toggleModalDelete,
+  toggleModalEdit,
+  setActionCar,
+}) => {
   return (
     <table className={s.table}>
       <thead>
@@ -26,8 +31,9 @@ export const Table = ({ cars, openModalDelete, setActionCarId }) => {
           <TableRow
             key={car.car_vin}
             car={car}
-            openModalDelete={openModalDelete}
-            setActionCarId={setActionCarId}
+            toggleModalDelete={toggleModalDelete}
+            toggleModalEdit={toggleModalEdit}
+            setActionCar={setActionCar}
           />
         ))}
       </tbody>
@@ -47,6 +53,7 @@ Table.propTypes = {
       availability: PropTypes.bool.isRequired,
     }),
   ).isRequired,
-  openModalDelete: PropTypes.func.isRequired,
-  setActionCarId: PropTypes.func.isRequired,
+  toggleModalDelete: PropTypes.func.isRequired,
+  toggleModalEdit: PropTypes.func.isRequired,
+  setActionCar: PropTypes.func.isRequired,
 };

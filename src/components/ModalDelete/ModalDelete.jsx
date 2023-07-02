@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 
 import s from './ModalDelete.module.css';
 
-export const ModalDelete = ({ isModalOpen, deleteCar }) => {
+export const ModalDelete = ({ toggleModalDelete, deleteCar }) => {
   const handleConfirm = () => {
     deleteCar();
-    isModalOpen(false);
+    toggleModalDelete();
   };
 
   const handleReject = () => {
-    isModalOpen(false);
+    toggleModalDelete();
   };
 
   return (
@@ -30,6 +30,6 @@ export const ModalDelete = ({ isModalOpen, deleteCar }) => {
 };
 
 ModalDelete.propTypes = {
-  isModalOpen: PropTypes.func.isRequired,
+  toggleModalDelete: PropTypes.func.isRequired,
   deleteCar: PropTypes.func.isRequired,
 };

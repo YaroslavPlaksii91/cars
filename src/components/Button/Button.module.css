@@ -1,0 +1,13 @@
+.button {
+  width: 200px;
+  height: 40px;
+  margin: 0 auto 30px;
+  font-weight: 500;
+  background-color: #ddd;
+  transition: background-color 250ms ease;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #ccc;
+}
