@@ -2,6 +2,9 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Modal } from 'components/Modal/Modal';
+import { Form } from 'components/Form/Form';
+import { Input } from 'components/Input/Input';
+import { Select } from 'components/Select/Select';
 import { Button } from 'components/Button/Button';
 
 import s from './ModalEdit.module.css';
@@ -21,18 +24,6 @@ export const ModalEdit = ({ car, closeModal, handleEdit, modalOpen }) => {
   const [carPrice, setCarPrice] = useState(price);
   const [carAvailability, setCarAvailability] = useState(availability);
 
-  const handleColorChange = e => {
-    setCarColor(e.target.value);
-  };
-
-  const handlePriceChange = e => {
-    setCarPrice(e.target.value);
-  };
-
-  const handleAvailabilityChange = e => {
-    setCarAvailability(e.target.value === 'true' ? true : false);
-  };
-
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -50,52 +41,43 @@ export const ModalEdit = ({ car, closeModal, handleEdit, modalOpen }) => {
 
   return (
     <Modal isModalOpen={modalOpen}>
-      <form className={s.form} onSubmit={handleSubmit}>
-        <div className={s.row}>
-          <label htmlFor="company">Company:</label>
-          <input type="text" id="company" value={company} disabled />
-        </div>
-        <div className={s.row}>
-          <label htmlFor="model">Model:</label>
-          <input type="text" id="model" value={model} disabled />
-        </div>
-        <div className={s.row}>
-          <label htmlFor="vin">VIN:</label>
-          <input type="text" id="vin" value={vin} disabled />
-        </div>
-        <div className={s.row}>
-          <label htmlFor="year">Year:</label>
-          <input type="text" id="year" value={year} disabled />
-        </div>
-        <div className={s.row}>
-          <label htmlFor="color">Color:</label>
-          <input
-            type="text"
-            id="color"
-            value={carColor}
-            onChange={handleColorChange}
-          />
-        </div>
-        <div className={s.row}>
-          <label htmlFor="price">Price:</label>
-          <input
-            type="text"
-            id="price"
-            value={carPrice}
-            onChange={handlePriceChange}
-          />
-        </div>
-        <div className={s.row}>
-          <label htmlFor="availability">Availability:</label>
-          <select
-            value={carAvailability}
-            id="availability"
-            onChange={handleAvailabilityChange}
-          >
-            <option value="true">True</option>
-            <option value="false">False</option>
-          </select>
-        </div>
+      <Form onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          name="company"
+          label="Company:"
+          value={company}
+          disabled
+        />
+        <Input type="text" name="model" label="Model:" value={model} disabled />
+        <Input type="text" name="vin" label="VIN:" value={vin} disabled />
+        <Input type="text" name="year" label="Year:" value={year} disabled />
+        <Input
+          type="text"
+          name="color"
+          label="Color:"
+          value={carColor}
+          onChange={e => setCarColor(e.target.value)}
+        />
+        <Input
+          type="text"
+          name="price"
+          label="Price:"
+          value={carPrice}
+          onChange={e => setCarPrice(e.target.value)}
+        />
+        <Select
+          label="Availability:"
+          value={carAvailability}
+          id="availability"
+          onChange={e =>
+            setCarAvailability(e.target.value === 'true' ? true : false)
+          }
+          options={[
+            { value: 'true', text: 'True' },
+            { value: 'false', text: 'False' },
+          ]}
+        />
         <div className={s.buttons}>
           <Button type="button" className="red" onClick={closeModal}>
             Cancel
@@ -104,7 +86,7 @@ export const ModalEdit = ({ car, closeModal, handleEdit, modalOpen }) => {
             Save
           </Button>
         </div>
-      </form>
+      </Form>
     </Modal>
   );
 };

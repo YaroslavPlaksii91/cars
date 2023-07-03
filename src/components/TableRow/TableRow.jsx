@@ -20,6 +20,16 @@ export const TableRow = ({
     availability,
   } = car;
 
+  const handleActionChange = (vin, action) => {
+    setActionCar(vin);
+
+    if (action === 'edit') {
+      toggleModalEdit();
+    } else if (action === 'delete') {
+      toggleModalDelete();
+    }
+  };
+
   return (
     <tr className={s.row}>
       <td>{company}</td>
@@ -31,10 +41,13 @@ export const TableRow = ({
       <td>{availability ? 'true' : 'false'}</td>
       <td>
         <Select
-          vin={vin}
-          toggleModalDelete={toggleModalDelete}
-          toggleModalEdit={toggleModalEdit}
-          setActionCar={setActionCar}
+          value=""
+          onChange={e => handleActionChange(vin, e.target.value)}
+          options={[
+            { value: '', text: 'Select Action' },
+            { value: 'edit', text: 'Edit' },
+            { value: 'delete', text: 'Delete' },
+          ]}
         />
       </td>
     </tr>

@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.wrapper label {
+  display: block;
+  width: 80px;
+  margin-right: 20px;
+}
+
+.wrapper select {
+  width: 200px;
+  height: 30px;
+  padding-left: 10px;
+}
