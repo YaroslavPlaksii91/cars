@@ -1,8 +1,25 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import s from './ModalDelete.module.css';
 
-export const ModalDelete = ({ toggleModalDelete, deleteCar }) => {
+export const ModalDelete = ({ toggleModalDelete, deleteCar, modalOpen }) => {
+  useEffect(() => {
+    const handleBodyScroll = () => {
+      if (modalOpen) {
+        document.body.classList.add('modal-open');
+      } else {
+        document.body.classList.remove('modal-open');
+      }
+    };
+
+    handleBodyScroll();
+
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [modalOpen]);
+
   const handleConfirm = () => {
     deleteCar();
     toggleModalDelete();
@@ -32,4 +49,5 @@ export const ModalDelete = ({ toggleModalDelete, deleteCar }) => {
 ModalDelete.propTypes = {
   toggleModalDelete: PropTypes.func.isRequired,
   deleteCar: PropTypes.func.isRequired,
+  modalOpen: PropTypes.bool.isRequired,
 };

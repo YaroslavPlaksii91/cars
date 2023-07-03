@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import s from './ModalEdit.module.css';
 
-export const ModalEdit = ({ car, closeModal, handleEdit }) => {
+export const ModalEdit = ({ car, closeModal, handleEdit, modalOpen }) => {
   const {
     car: company,
     car_color: color,
@@ -17,6 +17,22 @@ export const ModalEdit = ({ car, closeModal, handleEdit }) => {
   const [carColor, setCarColor] = useState(color);
   const [carPrice, setCarPrice] = useState(price);
   const [carAvailability, setCarAvailability] = useState(availability);
+
+  useEffect(() => {
+    const handleBodyScroll = () => {
+      if (modalOpen) {
+        document.body.classList.add('modal-open');
+      } else {
+        document.body.classList.remove('modal-open');
+      }
+    };
+
+    handleBodyScroll();
+
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [modalOpen]);
 
   const handleColorChange = e => {
     setCarColor(e.target.value);
@@ -111,6 +127,7 @@ export const ModalEdit = ({ car, closeModal, handleEdit }) => {
 ModalEdit.propTypes = {
   closeModal: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
+  modalOpen: PropTypes.bool.isRequired,
   car: PropTypes.shape({
     car: PropTypes.string.isRequired,
     car_color: PropTypes.string.isRequired,

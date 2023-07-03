@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import s from './ModalAdd.module.css';
 
-export const ModalAdd = ({ closeModal, addCar }) => {
+export const ModalAdd = ({ closeModal, addCar, modalOpen }) => {
   const [company, setCompany] = useState('');
   const [model, setModel] = useState('');
   const [vin, setVin] = useState('');
@@ -11,6 +11,22 @@ export const ModalAdd = ({ closeModal, addCar }) => {
   const [color, setColor] = useState('');
   const [price, setPrice] = useState('');
   const [availability, setAvailability] = useState(false);
+
+  useEffect(() => {
+    const handleBodyScroll = () => {
+      if (modalOpen) {
+        document.body.classList.add('modal-open');
+      } else {
+        document.body.classList.remove('modal-open');
+      }
+    };
+
+    handleBodyScroll();
+
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [modalOpen]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -118,4 +134,5 @@ export const ModalAdd = ({ closeModal, addCar }) => {
 ModalAdd.propTypes = {
   closeModal: PropTypes.func.isRequired,
   addCar: PropTypes.func.isRequired,
+  modalOpen: PropTypes.bool.isRequired,
 };

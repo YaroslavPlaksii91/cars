@@ -125,6 +125,7 @@ export const App = () => {
         <ModalDelete
           toggleModalDelete={toggleModalDelete}
           deleteCar={() => deleteCar(actionCar)}
+          modalOpen={modalDeleteIsOpen}
         />
       )}
       {modalEditIsOpen && (
@@ -132,10 +133,15 @@ export const App = () => {
           closeModal={toggleModalEdit}
           car={filteredCars.find(({ car_vin }) => car_vin === actionCar)}
           handleEdit={handleEdit}
+          modalOpen={modalEditIsOpen}
         />
       )}
       {modalAddIsOpen && (
-        <ModalAdd closeModal={toggleModalAdd} addCar={addCar} />
+        <ModalAdd
+          closeModal={toggleModalAdd}
+          addCar={addCar}
+          modalOpen={modalAddIsOpen}
+        />
       )}
     </Container>
   );
