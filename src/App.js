@@ -18,10 +18,10 @@ export const App = () => {
   const [filteredCars, setFilteredCars] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [actionCar, setActionCar] = useState(null);
   const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false);
   const [modalEditIsOpen, setModalEditIsOpen] = useState(false);
   const [modalAddIsOpen, setModalAddIsOpen] = useState(false);
-  const [actionCar, setActionCar] = useState(null);
 
   useEffect(() => {
     const storedCars = localStorage.getItem('cars');
@@ -105,7 +105,7 @@ export const App = () => {
     <Container>
       <Heading level={1}>Car Management System</Heading>
       <Search value={searchInput} onChange={handleSearch} />
-      <Button type="button" onClick={toggleModalAdd}>
+      <Button type="button" onClick={toggleModalAdd} className="center">
         Add car
       </Button>
       <Table
@@ -123,7 +123,7 @@ export const App = () => {
 
       {modalDeleteIsOpen && (
         <ModalDelete
-          toggleModalDelete={toggleModalDelete}
+          closeModal={toggleModalDelete}
           deleteCar={() => deleteCar(actionCar)}
           modalOpen={modalDeleteIsOpen}
         />

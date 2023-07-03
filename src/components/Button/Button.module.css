@@ -1,13 +1,40 @@
 .button {
   width: 200px;
   height: 40px;
-  margin: 0 auto 30px;
   font-weight: 500;
+  color: black;
+  border-radius: 6px;
+}
+
+.center {
+  composes: button;
+  margin: 0 auto 30px;
   background-color: #ddd;
   transition: background-color 250ms ease;
 }
 
-.button:hover,
-.button:focus {
+.center:hover,
+.center:focus {
   background-color: #ccc;
+}
+
+.green,
+.red {
+  composes: button;
+  transition: color 250ms ease;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.green:hover,
+.green:focus,
+.red:hover,
+.red:focus {
+  color: white;
 }

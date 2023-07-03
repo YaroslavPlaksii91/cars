@@ -1,5 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
+
+import { Modal } from 'components/Modal/Modal';
+import { Button } from 'components/Button/Button';
 
 import s from './ModalEdit.module.css';
 
@@ -17,22 +20,6 @@ export const ModalEdit = ({ car, closeModal, handleEdit, modalOpen }) => {
   const [carColor, setCarColor] = useState(color);
   const [carPrice, setCarPrice] = useState(price);
   const [carAvailability, setCarAvailability] = useState(availability);
-
-  useEffect(() => {
-    const handleBodyScroll = () => {
-      if (modalOpen) {
-        document.body.classList.add('modal-open');
-      } else {
-        document.body.classList.remove('modal-open');
-      }
-    };
-
-    handleBodyScroll();
-
-    return () => {
-      document.body.classList.remove('modal-open');
-    };
-  }, [modalOpen]);
 
   const handleColorChange = e => {
     setCarColor(e.target.value);
@@ -62,65 +49,63 @@ export const ModalEdit = ({ car, closeModal, handleEdit, modalOpen }) => {
   };
 
   return (
-    <div className={s.modal}>
-      <div className={s.content}>
-        <form className={s.form} onSubmit={handleSubmit}>
-          <div className={s.row}>
-            <label htmlFor="company">Company:</label>
-            <input type="text" id="company" value={company} disabled />
-          </div>
-          <div className={s.row}>
-            <label htmlFor="model">Model:</label>
-            <input type="text" id="model" value={model} disabled />
-          </div>
-          <div className={s.row}>
-            <label htmlFor="vin">VIN:</label>
-            <input type="text" id="vin" value={vin} disabled />
-          </div>
-          <div className={s.row}>
-            <label htmlFor="year">Year:</label>
-            <input type="text" id="year" value={year} disabled />
-          </div>
-          <div className={s.row}>
-            <label htmlFor="color">Color:</label>
-            <input
-              type="text"
-              id="color"
-              value={carColor}
-              onChange={handleColorChange}
-            />
-          </div>
-          <div className={s.row}>
-            <label htmlFor="price">Price:</label>
-            <input
-              type="text"
-              id="price"
-              value={carPrice}
-              onChange={handlePriceChange}
-            />
-          </div>
-          <div className={s.row}>
-            <label htmlFor="availability">Availability:</label>
-            <select
-              value={carAvailability}
-              id="availability"
-              onChange={handleAvailabilityChange}
-            >
-              <option value="true">True</option>
-              <option value="false">False</option>
-            </select>
-          </div>
-          <div className={s.buttons}>
-            <button type="button" className={s.btn} onClick={closeModal}>
-              Cancel
-            </button>
-            <button type="submit" className={s.btn}>
-              Save
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <Modal isModalOpen={modalOpen}>
+      <form className={s.form} onSubmit={handleSubmit}>
+        <div className={s.row}>
+          <label htmlFor="company">Company:</label>
+          <input type="text" id="company" value={company} disabled />
+        </div>
+        <div className={s.row}>
+          <label htmlFor="model">Model:</label>
+          <input type="text" id="model" value={model} disabled />
+        </div>
+        <div className={s.row}>
+          <label htmlFor="vin">VIN:</label>
+          <input type="text" id="vin" value={vin} disabled />
+        </div>
+        <div className={s.row}>
+          <label htmlFor="year">Year:</label>
+          <input type="text" id="year" value={year} disabled />
+        </div>
+        <div className={s.row}>
+          <label htmlFor="color">Color:</label>
+          <input
+            type="text"
+            id="color"
+            value={carColor}
+            onChange={handleColorChange}
+          />
+        </div>
+        <div className={s.row}>
+          <label htmlFor="price">Price:</label>
+          <input
+            type="text"
+            id="price"
+            value={carPrice}
+            onChange={handlePriceChange}
+          />
+        </div>
+        <div className={s.row}>
+          <label htmlFor="availability">Availability:</label>
+          <select
+            value={carAvailability}
+            id="availability"
+            onChange={handleAvailabilityChange}
+          >
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+        </div>
+        <div className={s.buttons}>
+          <Button type="button" className="red" onClick={closeModal}>
+            Cancel
+          </Button>
+          <Button type="submit" className="green">
+            Save
+          </Button>
+        </div>
+      </form>
+    </Modal>
   );
 };
 
