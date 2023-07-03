@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Car Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Car Management System is a web application that allows users to manage car information effectively. It provides features for viewing, adding, editing, and deleting car entries, making it a convenient tool for car inventory management.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- View a list of cars with details such as company, model, VIN, year, color, price, and availability.
+- Search for specific cars using a search bar.
+- Paginate through the list of cars for easier navigation.
+- Edit existing car entries, with selective fields enabled for modification.
+- Delete unwanted car entries from the system.
+- Modal windows for a user-friendly editing and adding experience.
+- Automatic data persistence between page reloads, ensuring data is saved.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   ```
+   git clone https://github.com/YaroslavPlaksii91/cars.git
+   ```
 
-### `npm test`
+2. Navigate to the project directory:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```
+   cd cars
+   ```
 
-### `npm run build`
+3. Install the required dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Start the application:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```
+   npm start
+   ```
 
-### `npm run eject`
+5. Open your web browser and visit [http://localhost:3000](http://localhost:3000) to access the Car Management System.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Usage
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Upon opening the application, you will see a list of cars with their details.
+2. Use the search bar to filter the list based on specific keywords.
+3. Navigate through the pages using the pagination buttons.
+4. To edit a car entry, select the "Edit" option from the Actions dropdown in the table and make the desired changes in the modal window.
+5. To delete a car entry, select the "Delete" option from the Actions dropdown in the table. Confirm the deletion in the modal window.
+6. Click on the "Add car" button to open the modal for adding a new car entry. Fill in the necessary details and click "Save" to add the car to the list.
+7. Changes made to the car list will be automatically saved and persisted between page reloads.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contributing
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Contributions are welcome! If you find any issues or have suggestions for improvements, please create an issue or submit a pull request in the GitHub repository.
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This project is licensed under the MIT License. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to copy the above text and use it in your README file for the Car Management System project.

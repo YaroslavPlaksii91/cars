@@ -103,7 +103,7 @@ export const App = () => {
 
   return (
     <Container>
-      <Heading level={1}>Cars</Heading>
+      <Heading level={1}>Car Management System</Heading>
       <Search value={searchInput} onChange={handleSearch} />
       <Button type="button" onClick={toggleModalAdd}>
         Add car
