@@ -34,6 +34,9 @@ export const ModalEdit = ({ car, closeModal, handleEdit, modalOpen }) => {
       availability: carAvailability,
     };
 
+    if (Object.values(editedCar).some(field => field === ''))
+      return alert('Missing required field!');
+
     handleEdit(editedCar);
 
     closeModal();

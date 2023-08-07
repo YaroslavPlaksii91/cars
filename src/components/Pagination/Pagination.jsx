@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import { Button } from 'components/Button/Button';
+
 import s from './Pagination.module.css';
 
 export const Pagination = ({ data, currentPage, perPage, onClick }) => {
@@ -13,14 +15,14 @@ export const Pagination = ({ data, currentPage, perPage, onClick }) => {
   return (
     <div className={s.pagination}>
       {pages.map(page => (
-        <button
-          type="button"
+        <Button
           key={page}
-          className={currentPage === page ? 'active' : ''}
+          type="button"
           onClick={() => onClick(page)}
+          className={currentPage === page ? 'active' : ''}
         >
           {page}
-        </button>
+        </Button>
       ))}
     </div>
   );

@@ -6,6 +6,10 @@
   border-radius: 6px;
 }
 
+.button.active {
+  background-color: #ccc;
+}
+
 .center {
   composes: button;
   margin: 0 auto 30px;
