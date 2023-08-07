@@ -16,14 +16,9 @@ export const Table = ({
     <table className={s.table}>
       <thead>
         <tr>
-          <th>{TABLE_COLUMNS.COMPANY}</th>
-          <th>{TABLE_COLUMNS.MODEL}</th>
-          <th>{TABLE_COLUMNS.VIN}</th>
-          <th>{TABLE_COLUMNS.COLOR}</th>
-          <th>{TABLE_COLUMNS.YEAR}</th>
-          <th>{TABLE_COLUMNS.PRICE}</th>
-          <th>{TABLE_COLUMNS.AVAILABILITY}</th>
-          <th>{TABLE_COLUMNS.ACTIONS}</th>
+          {Object.values(TABLE_COLUMNS).map(column => (
+            <th key={column}>{column}</th>
+          ))}
         </tr>
       </thead>
       <tbody>
